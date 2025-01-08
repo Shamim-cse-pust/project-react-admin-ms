@@ -1,6 +1,5 @@
 import React from "react";
-import Wrapper from "./Wrapper";
-
+import Wrapper from "../Wrapper";
 const Dashboard = () => (
   <Wrapper>
     <h2>Section title</h2>
