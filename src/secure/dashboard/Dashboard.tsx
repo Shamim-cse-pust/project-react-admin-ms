@@ -2,7 +2,7 @@ import React from "react";
 import Wrapper from "../Wrapper";
 const Dashboard = () => (
   <Wrapper>
-    <h2>Section title</h2>
+    <h2>Dashboard</h2>
     <div className="table-responsive">
       <table className="table table-striped table-sm">
         <thead>
