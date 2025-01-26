@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import Wrapper from "../Wrapper";
 import axios from "axios";
 import { User } from "../../classes/user";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Paginator from "../components/Paginator";
+
 
 class Users extends Component {
     state = {
         users: [], // Initialize with an empty array
     };
 
+    page = 1;
+    last_page = 0;
+
     componentDidMount = async () => {
         try {
             axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-            const response = await axios.get("users"); // Ensure this API returns data in the expected structure
-            console.log(response);
+            const response = await axios.get(`users?page=${this.page}`);
 
             // Convert the response data into instances of the User class
             const users = response.data.data.map((user: any) =>
@@ -22,10 +26,17 @@ class Users extends Component {
             );
 
             this.setState({ users });
+            this.last_page = response.data.meta.last_page;
         } catch (error) {
             console.error("Error fetching users:", error);
         }
     };
+
+    handlePageChange = async (page: number) => {
+        this.page = page;
+
+        await this.componentDidMount();
+    }
 
     render() {
         return (
@@ -70,6 +81,7 @@ class Users extends Component {
                         </tbody>
                     </table>
                 </div>
+                <Paginator lastPage={this.last_page} handlePageChange={this.handlePageChange} />
             </Wrapper>
         );
     }
