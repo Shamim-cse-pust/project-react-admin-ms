@@ -24,7 +24,6 @@ class Register extends Component {
             password_confirmation: this.password_confirm,
             role_id: 3,
         });
-        console.log(response);
         this.setState({
             redirect: true
         })

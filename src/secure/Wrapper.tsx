@@ -11,7 +11,6 @@ export default class Wrapper extends Component {
   componentDidMount = async () => {
       try {
           const response = await axios.get('profile');
-          console.log(response);
       } catch {
           this.setState({
               redirect: true

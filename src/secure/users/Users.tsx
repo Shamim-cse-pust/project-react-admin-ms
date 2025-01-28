@@ -38,9 +38,9 @@ class Users extends Component {
         await this.componentDidMount();
     }
 
-     handleDelete = async (id:number) => {
+    handleDelete = async (id: number) => {
         try {
-            if(window.confirm('are you sure you want delete the user')) {
+            if (window.confirm('are you sure you want delete the user')) {
                 await axios.delete(`users/${id}`);
                 alert('User deleted successfully');
             }
@@ -48,12 +48,12 @@ class Users extends Component {
             this.setState({
                 users: this.state.users.filter((u: User) => u.id !== id)
             })
-            
+
         } catch (error) {
-          console.error('Error deleting user:', error);
-          alert('Failed to delete user');
+            console.error('Error deleting user:', error);
+            alert('Failed to delete user');
         }
-      };
+    };
 
     render() {
         return (
@@ -87,9 +87,11 @@ class Users extends Component {
                                             <td>{user.role.name}</td>
                                             <td>
                                                 <div className="btn-group mr-2">
-                                                    <a href="#" className="btn btn-sm btn-outline-primary">Edit</a>
+                                                    <Link to={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-primary">
+                                                        Edit
+                                                    </Link>
                                                     <a href="#" className="btn btn-sm btn-outline-danger" onClick={() => this.handleDelete(user.id)}>Delete</a>
-                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     )
