@@ -7,6 +7,9 @@ import Register from "./public/Register";
 import RedirectToDashboard from "./secure/RedirectToDashboard";
 import UserCreate from "./secure/users/UserCreate";
 import UserEdit from "./secure/users/UserEdit";
+import Roles from "./secure/roles/Roles";
+import RoleCreate from "./secure/roles/RoleCreate";
+import RoleEdit from "./secure/roles/RoleEdit";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/users/create" element={<UserCreate />} />
           <Route path="/users/:id/edit" element={<UserEdit />} />
+          <Route path="/roles" element={<Roles />} />
+          <Route path="/roles/create" element={<RoleCreate />} />
+          <Route path="/roles/:id/edit" element={<RoleEdit />} />
         </Routes>
       </div>
     </BrowserRouter>
